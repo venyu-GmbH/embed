@@ -1,0 +1,46 @@
+{
+	"name": "@venyu/embed",
+	"version": "0.2.0",
+	"description": "Embeddable booking widget for Venyu sports venues — framework-agnostic JavaScript SDK",
+	"license": "MIT",
+	"author": "Venyu GmbH",
+	"homepage": "https://github.com/venyu-GmbH/embed#readme",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/venyu-GmbH/embed.git"
+	},
+	"keywords": [
+		"venyu",
+		"embed",
+		"booking",
+		"widget",
+		"sports",
+		"venue"
+	],
+	"type": "module",
+	"main": "dist/index.js",
+	"module": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"exports": {
+		".": {
+			"import": "./dist/index.js",
+			"types": "./dist/index.d.ts"
+		},
+		"./iife": "./dist/index.global.js"
+	},
+	"files": [
+		"dist"
+	],
+	"sideEffects": false,
+	"publishConfig": {
+		"access": "public"
+	},
+	"scripts": {
+		"build": "tsup",
+		"dev": "tsup --watch"
+	},
+	"devDependencies": {
+		"tsup": "^8.0.0",
+		"typescript": "^5.8.3"
+	}
+}
