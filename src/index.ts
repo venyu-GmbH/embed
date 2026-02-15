@@ -166,7 +166,11 @@ function validateConfig(config: VenyuEmbedConfig): {
  * @returns Session response with embedToken and organization details
  * @throws Error if the API call fails or returns an error response
  */
-async function initEmbedSession(apiUrl: string, publicKey: string): Promise<EmbedSessionResponse> {
+async function initEmbedSession(
+	apiUrl: string,
+	publicKey: string,
+	facilitySlug?: string,
+): Promise<EmbedSessionResponse> {
 	const controller = new AbortController();
 	const timeoutId = setTimeout(() => controller.abort(), API_TIMEOUT_MS);
 
@@ -177,6 +181,7 @@ async function initEmbedSession(apiUrl: string, publicKey: string): Promise<Embe
 			body: JSON.stringify({
 				publicKey,
 				origin: window.location.origin,
+				...(facilitySlug && { facilitySlug }),
 			}),
 			signal: controller.signal,
 		});
@@ -295,7 +300,7 @@ export async function init(
 
 	let session: EmbedSessionResponse;
 	try {
-		session = await initEmbedSession(apiUrl, publicKey);
+		session = await initEmbedSession(apiUrl, publicKey, facilitySlug);
 	} catch (error) {
 		const err = error instanceof Error ? error : new Error(String(error));
 		safeCallbacks.onError?.(err);
