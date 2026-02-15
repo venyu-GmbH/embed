@@ -1,6 +1,6 @@
 {
 	"name": "@venyu/embed",
-	"version": "0.2.0",
+	"version": "0.3.0",
 	"description": "Embeddable booking widget for Venyu sports venues — framework-agnostic JavaScript SDK",
 	"license": "MIT",
 	"author": "Venyu GmbH",

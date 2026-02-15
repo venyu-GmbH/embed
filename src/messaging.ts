@@ -325,7 +325,7 @@ export function createMessagingBridge(config: MessagingConfig): MessagingBridge 
 	 * closes the popup (without completing auth), the stale Window reference
 	 * is cleaned up to avoid a memory leak.
 	 */
-	function openAuthPopup(): void {
+	function openAuthPopup(codeChallenge?: string): void {
 		if (state.destroyed) return;
 
 		// Close any existing popup and stop its poll before opening a new one
@@ -342,6 +342,9 @@ export function createMessagingBridge(config: MessagingConfig): MessagingBridge 
 			popupUrl.searchParams.set('nonce', state.nonce);
 		}
 		popupUrl.searchParams.set('embedSessionId', embedSessionId);
+		if (codeChallenge) {
+			popupUrl.searchParams.set('codeChallenge', codeChallenge);
+		}
 
 		const popup = window.open(popupUrl.toString(), 'venyu-auth', getPopupFeatures());
 
@@ -461,7 +464,12 @@ export function createMessagingBridge(config: MessagingConfig): MessagingBridge 
 			}
 
 			case 'venyu:auth:open-popup': {
-				openAuthPopup();
+				const codeChallenge = message.payload.codeChallenge;
+				if (typeof codeChallenge === 'string') {
+					openAuthPopup(codeChallenge);
+				} else {
+					openAuthPopup();
+				}
 				break;
 			}
 
