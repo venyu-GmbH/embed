@@ -1,7 +1,7 @@
 # @venyu/embed
 
 [![npm version](https://img.shields.io/npm/v/@venyu/embed.svg)](https://www.npmjs.com/package/@venyu/embed)
-[![license](https://img.shields.io/npm/l/@venyu/embed.svg)](https://github.com/venyu-GmbH/embed/blob/main/LICENSE)
+[![license](https://img.shields.io/github/license/venyu-GmbH/embed.svg)](https://github.com/venyu-GmbH/embed/blob/main/LICENSE)
 
 Embeddable booking widget for Venyu sports venues. Framework-agnostic JavaScript SDK that works as both an ESM import and a `<script>` tag.
 
